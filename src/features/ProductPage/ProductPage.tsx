@@ -10,7 +10,7 @@ interface ProductPageProps {
 
 const ProductPage = async ({ productId }: ProductPageProps) => {
 	// надсилання запиту для отримання одного продукту. Використовую звичайний fetch запит а не rtk-query або createAsyncThunk для того, щоб працювала індексація сайту (запит відбувається на стороні сервера завдяки цьому, а не на стороні клієнта) + реалізовано кешування даних
-	const res = await fetch(`http://localhost:3001/api/product/${productId}`, { cache: 'force-cache' });
+	const res = await fetch(`${process.env.BASE_URL}product/${productId}`, { cache: 'force-cache' });
 	if (!res.ok) {
 		return <Error message={`${res.status}`} />;
 	}
